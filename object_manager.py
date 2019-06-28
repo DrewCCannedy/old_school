@@ -1,12 +1,24 @@
-from gameobject import GameObject, Door, Chest
+from game_object import GameObject, Door, Chest
 from npc import MrsHuff
 
+import json
 
 class ObjectManager:
     """Object manager for old school."""
     def __init__(self):
         self.objects = []
         self.create_objects()
+        self.write_objects()
+
+    def write_objects(self):
+        path = "objects.json"
+
+        f = open(path, 'w')
+        dicts = []
+        for o in self.objects:
+            dicts.append(o.__dict__)
+        json.dump(dicts, f)
+        f.close()
 
     def create_objects(self):
         # tutorial 1 objects
@@ -16,10 +28,10 @@ class ObjectManager:
         self.objects.append(o)
 
         des = "Surely you don't plan on returning to that retched place"
-        cord = [0, 4]
+        unlock_cord = [0, 4]
         name = "The door back to school"
         o = Door(name, des, 'D', 1, 4, "Tutorial 1",
-                 cord, "Janitor's Key")
+                 unlock_cord, "Janitor's Key")
         self.objects.append(o)
 
         des = "It reads: \"A great foe lies ahead;"
@@ -47,29 +59,29 @@ class ObjectManager:
         # school hall objects
         name = "Door to Mrs. Huff's Classroom"
         des = "Your lovely teacher"
-        cord = [32, 1]
-        o = Door(name, des, 'D', 32, 2, "School Hall", cord)
+        unlock_cord = [32, 1]
+        o = Door(name, des, 'D', 32, 2, "School Hall", unlock_cord)
         self.objects.append(o)
 
         name = "Door to the Janitor's Cave"
         des = "Smells pretty spooky"
-        cord = [16, 8]
-        o = Door(name, des, 'D', 16, 7, "School Hall", cord)
+        unlock_cord = [16, 8]
+        o = Door(name, des, 'D', 16, 7, "School Hall", unlock_cord)
         self.objects.append(o)
 
         # janitor's closet
         name = "A Strange Door"
         des = "Ever hear about the kid who opened the strange door? "
         des += "Hear he ended up beating the game or something"
-        cord = [24, 4]
-        o = Door(name, des, 'D', 23, 4, "Janitor's Cave", cord)
+        unlock_cord = [24, 4]
+        o = Door(name, des, 'D', 23, 4, "Janitor's Cave", unlock_cord)
         self.objects.append(o)
 
         name = "Door to the Hall"
         des = "What? You don't like brooms and stuff?"
-        cord = [16, 0]
+        unlock_cord = [16, 0]
         o = Door(name, des, 'D', 16, 1, "Janitor's Cave",
-                 cord, "Janitor's Key")
+                 unlock_cord, "Janitor's Key")
         self.objects.append(o)
 
         des = "What would a kid want with stinky cleaning supplies?"

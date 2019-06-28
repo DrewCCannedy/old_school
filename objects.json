@@ -1,0 +1,154 @@
+[
+    {
+        "name": "an old chalkboard",
+        "description": "It reads: \"Walk the path of those who came before; destroy that which should never have been created\"",
+        "char": "B",
+        "x": 11,
+        "y": 4,
+        "room": "Tutorial 1",
+        "class_name": "GameObject"
+    },
+    {
+        "unlock_cord": [
+            0,
+            4
+        ],
+        "key": "Janitor's Key",
+        "name": "The door back to school",
+        "description": "Surely you don't plan on returning to that retched place",
+        "char": "D",
+        "x": 1,
+        "y": 4,
+        "room": "Tutorial 1",
+        "class_name": "Door"
+    },
+    {
+        "name": "an old chalkboard",
+        "description": "It reads: \"A great foe lies ahead; press 'k' to strike him\"",
+        "char": "B",
+        "x": 23,
+        "y": 1,
+        "room": "Tutorial 1",
+        "class_name": "GameObject"
+    },
+    {
+        "name": "an old chalkboard",
+        "description": "It reads: \"More Challenging Enemies Require Greater Strikes; the next foe will require two strikes, followed by a left slash\"",
+        "char": "B",
+        "x": 3,
+        "y": 6,
+        "room": "Tutorial 1",
+        "class_name": "GameObject"
+    },
+    {
+        "name": "an old chalkboard",
+        "description": "It reads: \"A great foe lies ahead; press 'jkl' to perform a left slash\"",
+        "char": "B",
+        "x": 29,
+        "y": 7,
+        "room": "Tutorial 1",
+        "class_name": "GameObject"
+    },
+    {
+        "treasure": "Janitor's Key",
+        "name": "Wooden Chest",
+        "description": "The wood is old and cracked",
+        "char": "t",
+        "x": 11,
+        "y": 2,
+        "room": "Tutorial 2",
+        "class_name": "Chest"
+    },
+    {
+        "unlock_cord": [
+            32,
+            1
+        ],
+        "key": null,
+        "name": "Door to Mrs. Huff's Classroom",
+        "description": "Your lovely teacher",
+        "char": "D",
+        "x": 32,
+        "y": 2,
+        "room": "School Hall",
+        "class_name": "Door"
+    },
+    {
+        "unlock_cord": [
+            16,
+            8
+        ],
+        "key": null,
+        "name": "Door to the Janitor's Cave",
+        "description": "Smells pretty spooky",
+        "char": "D",
+        "x": 16,
+        "y": 7,
+        "room": "School Hall",
+        "class_name": "Door"
+    },
+    {
+        "unlock_cord": [
+            24,
+            4
+        ],
+        "key": null,
+        "name": "A Strange Door",
+        "description": "Ever hear about the kid who opened the strange door? Hear he ended up beating the game or something",
+        "char": "D",
+        "x": 23,
+        "y": 4,
+        "room": "Janitor's Cave",
+        "class_name": "Door"
+    },
+    {
+        "unlock_cord": [
+            16,
+            0
+        ],
+        "key": "Janitor's Key",
+        "name": "Door to the Hall",
+        "description": "What? You don't like brooms and stuff?",
+        "char": "D",
+        "x": 16,
+        "y": 1,
+        "room": "Janitor's Cave",
+        "class_name": "Door"
+    },
+    {
+        "name": "Janitorial Supplies",
+        "description": "What would a kid want with stinky cleaning supplies?",
+        "char": "J",
+        "x": 9,
+        "y": 6,
+        "room": "Janitor's Cave",
+        "class_name": "GameObject"
+    },
+    {
+        "name": "Trash Drawer",
+        "description": "The legendary drawer filled with trash",
+        "char": "T",
+        "x": 23,
+        "y": 2,
+        "room": "Janitor's Cave",
+        "class_name": "GameObject"
+    },
+    {
+        "name": "Shelby Blacksmith",
+        "description": "Buzz off. Can't you see I'm busy slimo?",
+        "char": "k",
+        "x": 33,
+        "y": 5,
+        "room": "Huff Class",
+        "class_name": "GameObject"
+    },
+    {
+        "name": "Mrs Huff",
+        "description": "Your Teacher.",
+        "char": "T",
+        "x": 39,
+        "y": 6,
+        "room": "Huff Class",
+        "class_name": "MrsHuff"
+    }
+]

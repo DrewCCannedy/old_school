@@ -1,6 +1,7 @@
 """Enemy for the Old_School Game."""
 
-from gameobject import GameObject
+from game_object import GameObject
+import json
 
 
 class EnemyManager:
@@ -8,15 +9,20 @@ class EnemyManager:
         self.enemies = []
         self.create_enemies()
 
+    # create enemies from the enemies.json file
     def create_enemies(self):
-        o = Oogly(17, 7, 'Tutorial 1', True)
-        self.enemies.append(o)
+        path = "json/enemies.json"
+        f = open(path)
 
-        o = Oogly(5, 6, "Tutorial 1", False)
-        self.enemies.append(o)
+        list_ = json.load(f)
+        for dict_ in list_:
+            class_name = dict_["class_name"]
+            if class_name == "Oogly":
+                o = Oogly(dict_)
+            elif class_name == "GreaterOogly":
+                o = GreaterOogly(dict_)
+            self.enemies.append(o)
 
-        o = GreaterOogly(31, 2, 'Tutorial 1', True)
-        self.enemies.append(o)
 
     def search_enemies(self, player, room):
         for o in self.enemies:
@@ -25,18 +31,20 @@ class EnemyManager:
                     if o.x == player.x - 1 or o.x == player.x + 1:
                         return o
 
+    # just in case we want to update the enemies.json
+    def write_enemies(self):
+        path = "enemies.json"
+
+        f = open(path)
+        dicts = []
+        for o in self.enemies:
+            dicts.append(o.__dict__)
+        json.dump(dicts, f)
+        f.close()
+
 
 class Enemy(GameObject):
     """Enemy for Old School Game."""
-
-    def __init__(self, name, description, char, x, y,
-                 room, health, damage, move):
-        GameObject.__init__(self, name, description, char, x, y, room)
-        self.health = health
-        self.damage = damage
-        self.dead = False
-        self.move_capable = move
-        self.move_timer = 0
 
     def run(self, player, room):
         # action: die
@@ -88,14 +96,9 @@ class Enemy(GameObject):
 class GreaterOogly(Enemy):
     """First Complex Enemy in Old SChool."""
 
-    def __init__(self, x, y, room, move):
-        name: str = "Greater Oogly"
-        description: str = "Like an Oogly (but greater)"
-        char: str = 'C'
-        health: list = ['k', 'k', 'jkl']
-        damage: int = 1
-        Enemy.__init__(self, name, description, char,
-                       x, y, room, health, damage, move)
+    def __init__(self, dict_):
+        for key in dict_:
+            setattr(self, key, dict_[key])
 
     def move(self):
         if self.move_capable:
@@ -114,11 +117,6 @@ class GreaterOogly(Enemy):
 class Oogly(Enemy):
     """Most common enemy in Old School."""
 
-    def __init__(self, x, y, room, move):
-        name: str = "An Oogly"
-        description: str = "A small misshapen child."
-        char: str = 'c'
-        health: list = ['k', 'k']
-        damage: int = 1
-        Enemy.__init__(self, name, description, char,
-                       x, y, room, health, damage, move)
+    def __init__(self, dict_):
+        for key in dict_:
+            setattr(self, key, dict_[key])

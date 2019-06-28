@@ -2,6 +2,8 @@
 
 from colorama import Fore, Style
 
+from help import get_color_str
+
 
 class Map:
     def __init__(self, name, data, left=None, right=None, up=None, down=None):
@@ -32,38 +34,42 @@ class MapController:
             self.world_input = wui
         else:
             self.world_input = "No Enemies"
-        # converts the player's x and y to a position of the map string
-        player_position = player.x + player.y * self.columns
+
         # convert the map string to a list in order to do [] insertion
         current_map = list(self.current_map.data)
-        # only let the player move to an unnocupied space
-        if current_map[player_position] == ' ':
-            current_map[player_position] = Fore.GREEN + 'p' + Style.RESET_ALL
-        else:
-            player.x = player.px
-            player.y = player.py
-            player_position = player.x + player.y * self.columns
-            current_map[player_position] = Fore.GREEN + 'p' + Style.RESET_ALL
 
         # put objects in map
         for o in objects:
             if o.room == self.current_map.name:
                 pos = o.x + o.y * self.columns
-                current_map[pos] = Fore.BLUE + o.char + Style.RESET_ALL
+                current_map[pos] = get_color_str(o.char, 'blue')
+        
+        # converts the player's x and y to a position of the map string
+        player_position = player.x + player.y * self.columns
+        
+        # only let the player move to an unnocupied space
+        if not current_map[player_position] in ' ' + get_color_str('D', 'blue'):
+            player.x = player.px
+            player.y = player.py
+            player_position = player.x + player.y * self.columns
+        
+        current_map[player_position] = get_color_str('p', "green")
 
         # put enemies in map
         for o in enemies:
             if o.room == self.current_map.name:
                 pos = o.x + o.y * self.columns
                 if o.dead:
-                    current_map[pos] = Fore.MAGENTA + o.char + Style.RESET_ALL
+                    color = "magenta"
                 else:
-                    current_map[pos] = Fore.RED + o.char + Style.RESET_ALL
+                    color = "red"
+                current_map[pos] = get_color_str(o.char, color)
 
         output = ''.join(current_map)
+        # print map, print UI
         print(output, end='')
-        print(Fore.GREEN + self.player_input)
-        print(Fore.RED + self.world_input + Style.RESET_ALL)
+        print(get_color_str(self.player_input, "green"))
+        print(get_color_str(self.world_input, "red"))
 
     def change(self, direction):
         if direction == 'right':

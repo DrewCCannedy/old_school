@@ -5,7 +5,6 @@ def getch():
     try:
         import msvcrt
         x = bytes.decode(msvcrt.getch())
-        msvcrt.getch()
         return x
 
     except ImportError:

@@ -36,9 +36,9 @@ class GameObject:
 class Door(GameObject):
 
     def __init__(self, name, description, char, x, y, room,
-                 cord=None, key=None):
+                 unlock_cord=None, key=None):
         # coordinates to unblock
-        self.cord = cord
+        self.unlock_cord = unlock_cord
         self.key = key
         GameObject.__init__(self, name, description, char, x, y, room)
 
@@ -60,7 +60,7 @@ class Door(GameObject):
                 out = center_align(out_string)
                 print('\n\n\n{}\n\n'.format(out))
                 getch()
-                return self.cord
+                return self.unlock_cord
             else:
                 out = center_align('The door is locked')
                 print('\n\n\n{}\n\n'.format(out))

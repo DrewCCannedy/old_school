@@ -1,5 +1,5 @@
 # npc objects for the old school game
-from gameobject import GameObject
+from game_object import GameObject
 from getch import getch
 
 # from debug import log

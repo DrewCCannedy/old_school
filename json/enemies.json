@@ -1,0 +1,54 @@
+[
+    {
+        "name": "An Oogly",
+        "description": "A small misshapen child.",
+        "char": "c",
+        "x": 17,
+        "y": 7,
+        "room": "Tutorial 1",
+        "health": [
+            "k",
+            "k"
+        ],
+        "damage": 1,
+        "dead": false,
+        "move_capable": true,
+        "move_timer": 0,
+        "class_name": "Oogly"
+    },
+    {
+        "name": "An Oogly",
+        "description": "A small misshapen child.",
+        "char": "c",
+        "x": 5,
+        "y": 6,
+        "room": "Tutorial 1",
+        "health": [
+            "k",
+            "k"
+        ],
+        "damage": 1,
+        "dead": false,
+        "move_capable": false,
+        "move_timer": 0,
+        "class_name": "Oogly"
+    },
+    {
+        "name": "Greater Oogly",
+        "description": "Like an Oogly (but greater)",
+        "char": "C",
+        "x": 31,
+        "y": 2,
+        "room": "Tutorial 1",
+        "health": [
+            "k",
+            "k",
+            "jkl"
+        ],
+        "damage": 1,
+        "dead": false,
+        "move_capable": true,
+        "move_timer": 0,
+        "class_name": "GreaterOogly"
+    }
+]

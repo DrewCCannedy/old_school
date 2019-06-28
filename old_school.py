@@ -3,7 +3,7 @@
 import os
 import player
 import screen
-from objectmanager import ObjectManager
+from object_manager import ObjectManager
 from enemy import EnemyManager
 from getch import getch
 
@@ -21,7 +21,7 @@ enemy_manager = EnemyManager()
 object_manager = ObjectManager()
 
 mixer.init()
-mixer.Sound("Noodle.wav").play(-1)
+mixer.Sound("sounds/noodle.wav").play(-1)
 
 playing = True
 
@@ -78,14 +78,15 @@ while playing:
     elif user_input == 'u':
         player.show_info()
     # action: attack
-    elif user_input in attack_commands:
-        current_enemy = enemy_manager.search_enemies(player,
-                                                     map.current_map.name)
-        # take in slashes
-        if user_input != 'k':
-            user_input += getch()
-            user_input += getch()
-        try:
-            pui = current_enemy.take_damage(user_input)
-        except AttributeError:
-            pass
+    elif user_input == "k":
+        user_input = getch()
+        if user_input in attack_commands:
+            current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
+            # take in slashes
+            if user_input != 'k':
+                user_input += getch()
+                user_input += getch()
+            try:
+                pui = current_enemy.take_damage(user_input)
+            except AttributeError:
+                pass
