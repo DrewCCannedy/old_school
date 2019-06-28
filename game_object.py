@@ -1,9 +1,7 @@
 """Object for the Old_School game."""
 
-from colorama import Fore, Style
-
 from getch import getch
-from help import center_align, clear
+from help import center_align, clear, get_color_str
 
 
 class GameObject:
@@ -24,8 +22,7 @@ class GameObject:
         print('\n\n')
         print(' ' * (int(spaces/2)), end='')
         print(self.char + '---', end='')
-        print(Fore.RED + self.name.upper(), end='')
-        print(Style.RESET_ALL, end='')
+        print(get_color_str(self.name.upper(), "red"))
         print('---' + self.char, end='')
         print('\n\n' + desline)
 

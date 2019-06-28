@@ -1,7 +1,5 @@
 """Map for the Old_School game."""
 
-from colorama import Fore, Style
-
 from help import get_color_str
 
 
