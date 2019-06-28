@@ -1,15 +1,14 @@
 """An RPG in CMD."""
 
 import os
+
+from pygame import mixer
+
 import player
 import screen
 from object_manager import ObjectManager
 from enemy import EnemyManager
 from getch import getch
-
-from pygame import mixer
-
-from debug import log
 
 player = player.Player(x=2, y=4, px=2, py=2, health=5, inventory=[])
 move_commands = ['d', 'a', 's', 'w']
@@ -67,7 +66,6 @@ while playing:
             o = enemy_manager.search_enemies(player, map.current_map.name)
         try:
             if o.room == map.current_map.name:
-                log("Inspecting " + o.name + " in " + o.room)
                 result = o.get_info(player)
             # if a door is opened
             if result:

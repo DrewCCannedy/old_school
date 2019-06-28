@@ -1,7 +1,8 @@
 """Enemy for the Old_School Game."""
 
-from game_object import GameObject
 import json
+
+from game_object import GameObject
 
 
 class EnemyManager:
@@ -33,7 +34,7 @@ class EnemyManager:
 
     # just in case we want to update the enemies.json
     def write_enemies(self):
-        path = "enemies.json"
+        path = "json/enemies.json"
 
         f = open(path)
         dicts = []

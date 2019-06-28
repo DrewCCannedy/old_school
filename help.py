@@ -1,4 +1,5 @@
 from os import system, name
+
 from colorama import Fore, Style
 
 

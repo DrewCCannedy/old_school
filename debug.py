@@ -1,4 +1,5 @@
-# debug functions for old school
+"""Debug functions for old school."""
+
 import os
 
 def log(output):

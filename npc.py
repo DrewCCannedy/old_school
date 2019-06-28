@@ -1,20 +1,14 @@
-# npc objects for the old school game
+"""Npc objects for the old school game."""
+
 from game_object import GameObject
 from getch import getch
-
-# from debug import log
 
 
 class MrsHuff(GameObject):
     """Mrs Huff NPC for old school."""
 
-    def __init__(self, name="Mrs Huff",
-                 description="Your Teacher.",
-                 char="T",
-                 x=39,
-                 y=6,
-                 room="Huff Class"):
-        GameObject.__init__(self, name, description, char, x, y, room)
+    def __init__(self, dict_):
+        super().__init__(dict_)
 
     def get_info(self, player):
         if "Janitor's Key" not in player.inventory:

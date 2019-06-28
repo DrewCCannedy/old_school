@@ -1,19 +1,16 @@
 """Object for the Old_School game."""
 
 from colorama import Fore, Style
+
 from getch import getch
 from help import center_align, clear
 
 
 class GameObject:
 
-    def __init__(self, name, description, char, x, y, room):
-        self.name = name
-        self.description = description
-        self.char = char
-        self.x = x
-        self.y = y
-        self.room = room
+    def __init__(self, dict_):
+        for key in dict_:
+            setattr(self, key, dict_[key])
 
     def get_info(self, player):
         self.get_info_help()
@@ -35,12 +32,8 @@ class GameObject:
 
 class Door(GameObject):
 
-    def __init__(self, name, description, char, x, y, room,
-                 unlock_cord=None, key=None):
-        # coordinates to unblock
-        self.unlock_cord = unlock_cord
-        self.key = key
-        GameObject.__init__(self, name, description, char, x, y, room)
+    def __init__(self, dict_):
+        super().__init__(dict_)
 
     def get_info(self, player):
         self.get_info_help()
@@ -77,9 +70,8 @@ class Door(GameObject):
 
 class Chest(GameObject):
 
-    def __init__(self, name, description, char, x, y, room, treasure):
-        self.treasure = treasure
-        GameObject.__init__(self, name, description, char, x, y, room)
+    def __init__(self, dict_):
+        super().__init__(dict_)
 
     def get_info(self, player):
         self.get_info_help()
