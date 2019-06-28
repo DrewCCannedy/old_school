@@ -30,7 +30,7 @@ class ObjectManager:
                 o = MrsHuff(dict_)
             self.objects.append(o)
 
-    
+    # just in case we want to update objects.json
     def write_objects(self):
         path = "json/objects.json"
 

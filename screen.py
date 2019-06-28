@@ -1,16 +1,14 @@
 """Map for the Old_School game."""
 
+import json
+
 from help import get_color_str
 
 
 class Map:
-    def __init__(self, name, data, left=None, right=None, up=None, down=None):
-        self.name = name
-        self.data = data
-        self.left = left
-        self.right = right
-        self.up = up
-        self.down = down
+    def __init__(self, dict_):
+        for key in dict_:
+            setattr(self, key, dict_[key])
 
 
 class MapController:
@@ -19,7 +17,8 @@ class MapController:
         self.columns = 50
         self.rows = 11
 
-        self.maps = self.create_maps()
+        self.maps = []
+        self.create_maps()
         self.current_map = self.maps[2]
 
     def update(self, player, objects, enemies, pui, wui):
@@ -95,95 +94,22 @@ class MapController:
             map_string += item
         index = self.maps.index(self.current_map)
         self.maps[index].data = map_string
-        # self.current_map = self.maps[0]
+
+    # just in case we want to update maps.json
+    def write_maps(self):
+        path = "json/maps.json"
+
+        f = open(path, 'w')
+        dicts = []
+        for o in self.maps:
+            dicts.append(o.__dict__)
+        json.dump(dicts, f)
+        f.close()
 
     def create_maps(self):
-        maps = []
+        path = "json/maps.json"
+        f = open(path)
 
-        map = []
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX               XXXXX       XXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX   XXXXXXXXX   XXXXX       XXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX   XXXXXXXXX   XXXXX                     ")
-        map.append("X           XXXXXXXXX   XXXXX       XXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXX   XXXXXXXXX   XXXXXXXXXXXXXX")
-        map.append("XXX       XXXXX         XXXXXXX     XXXXXXXXXXXXXX")
-        map.append("XXXXX                   XXXXX       XXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXX                       XXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map_string = ""
-        for item in map:
-            map_string += item
-        name = "Tutorial 1"
-        maps.append(Map(name, map_string, "Janitor's Cave", "Tutorial 2"))
-
-        map = []
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map_string = ""
-        for item in map:
-            map_string += item
-        name = "Tutorial 2"
-        maps.append(Map(name, map_string, "Tutorial 1"))
-
-        map = []
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X XXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXX")
-        map.append("                                                  ")
-        map.append("                                                  ")
-        map.append("                                                  ")
-        map.append("                                                  ")
-        map.append("XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map_string = ""
-        for item in map:
-            map_string += item
-        name = "School Hall"
-        maps.append(Map(name, map_string, None, None,
-                        "Huff Class", "Janitor's Cave"))
-
-        map = []
-        map.append("XXXXXXXXXXXXXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX               XXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX              XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX               X                         ")
-        map.append("XXXXXXXXX              XXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXX               XXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map_string = ""
-        for item in map:
-            map_string += item
-        name = "Janitor's Cave"
-        maps.append(Map(name, map_string, None, "Tutorial 1", "School Hall"))
-
-        map = []
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-        map.append("XXXXXXXXXX                                      XX")
-        map.append("XXXXXXXXXXXX     k   k   k   k   k           D  XX")
-        map.append("XXXXXXXXXXXX     k   k   k   k   k           D  XX")
-        map.append("XXXXXXXXXXXX     k   k   k   k   k              XX")
-        map.append("XXXXXXXXXXXX                                    XX")
-        map.append("XXXXXXXXXX       XXXXXXXXX                      XX")
-        map.append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   XXXXXXXXXXXXXXXX")
-        map_string = ""
-        for item in map:
-            map_string += item
-        name = "Huff Class"
-        maps.append(Map(name, map_string, None, None, None, "School Hall"))
-
-        return maps
+        list_ = json.load(f)
+        for dict_ in list_:
+            self.maps.append(Map(dict_))

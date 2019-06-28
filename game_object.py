@@ -22,7 +22,7 @@ class GameObject:
         print('\n\n')
         print(' ' * (int(spaces/2)), end='')
         print(self.char + '---', end='')
-        print(get_color_str(self.name.upper(), "red"))
+        print(get_color_str(self.name.upper(), "red"), end='')
         print('---' + self.char, end='')
         print('\n\n' + desline)
 
