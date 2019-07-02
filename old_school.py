@@ -9,6 +9,7 @@ import screen
 from object_manager import ObjectManager
 from enemy import EnemyManager
 from getch import getch
+from debug import log
 
 player = player.Player(x=2, y=4, px=2, py=2, health=5, inventory=[])
 move_commands = ['d', 'a', 's', 'w']
@@ -60,12 +61,13 @@ while playing:
             o = enemy_manager.search_enemies(player, map.current_map.name)
         try:
             if o.room == map.current_map.name:
+                log("Printing info for {}".format(o.name))
                 result = o.get_info(player)
             # if a door is opened
             if result:
                 map.delete(result)
-        except AttributeError:
-            pass
+        except AttributeError as e:
+            log("Error occured during get_info(): {}".format(e))
     # action: inspect player
     elif user_input == 'u':
         player.show_info()

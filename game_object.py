@@ -37,56 +37,52 @@ class Door(GameObject):
         out = center_align('Open the door? y/n')
         print('\n' + out)
         player_input = getch()
+        clear()
         # action: open door
         if player_input == 'y':
-            clear()
             # only open if they have the key
             if self.key in player.inventory or self.key is None:
                 if self.key in player.inventory:
-                    des = 'You unlock the door using the {}'
+                    des = 'You unlock the door using the {}'.format(get_color_str(self.key, "yellow"))
                 else:
                     des = 'The door opens'
-                out_string = des.format(self.key)
-                out = center_align(out_string)
-                print('\n\n\n{}\n\n'.format(out))
-                getch()
-                return self.unlock_cord
+                out = des
+                _return = self.unlock_cord
             else:
-                out = center_align('The door is locked')
-                print('\n\n\n{}\n\n'.format(out))
-                getch()
+                out = 'The door is locked'
         # action: leave the door
         else:
-            clear()
             out = 'Fearing what is beyond, '
             out += 'you leave the door for another day'
-            out = center_align(out)
-            print('\n\n\n{}\n\n'.format(out))
-            getch()
-
+        out = center_align(out)
+        print('\n\n\n{}\n\n'.format(out))
+        getch()
+        if _return:
+            return _return
 
 class Chest(GameObject):
 
     def __init__(self, dict_):
+        self.empty = False
         super().__init__(dict_)
 
     def get_info(self, player):
         self.get_info_help()
-        out = center_align('Open the chest? y/n')
+        out = center_align('Open this? y/n')
         print('\n' + out)
         player_input = getch()
         # action: open chest
-        if player_input == 'y':
-            clear()
-            out_string = 'You found a {}'.format(self.treasure)
-            player.add_inventory(self.treasure)
-            out = center_align(out_string)
-            print('\n\n\n{}\n\n'.format(out))
-            getch()
+        clear()
+        if not self.empty:
+            if player_input == 'y':
+                out = 'You found a {}'.format(get_color_str(self.treasure, "yellow"))
+                player.add_inventory(self.treasure)
+                self.empty = True
+            else:
+                out = 'Fearing the unknown, '
+                out += 'you leave it closed for another day'
         else:
-            clear()
-            out = 'Fearing the unknown, '
-            out += 'you leave the chest for another day'
-            out = center_align(out)
-            print('\n\n\n{}\n\n'.format(out))
-            getch()
+            out = 'You find nothing... perhaps someone has already take the contents'
+        out = center_align(out)
+        print('\n\n\n{}\n\n'.format(out))
+        getch()

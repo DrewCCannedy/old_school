@@ -2,7 +2,7 @@
 from dataclasses import dataclass, field
 
 from getch import getch
-from help import clear, center_align
+from help import clear, center_align, get_color_str
 
 
 @dataclass
@@ -62,6 +62,9 @@ class Player:
 
     def add_inventory(self, item):
         self.inventory.append(item)
+
+    def remove_inventory(self, item):
+        self.inventory.remove(item)
 
     def show_info(self):
         clear()

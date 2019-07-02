@@ -1,6 +1,7 @@
 from os import system, name
+import string
 
-from colorama import Fore, Style
+from colorama import Fore
 
 
 def chunks(s, n):
@@ -30,9 +31,10 @@ def clear():
 
 def center_align(data):
     final_string = ""
-    lines = chunks(data, 30)
+    lines = chunks(data, 40)
     for line in lines:
-        dif = 50 - len(line)
+        textSize = len([c for c in line if c in string.printable])
+        dif = 50 - textSize
         padding = ' ' * int(dif / 2)
         final_string += padding + line + '\n'
     return final_string
@@ -45,4 +47,4 @@ def get_color_str(char, color):
         "red": Fore.RED,
         "yellow": Fore.YELLOW,
     }
-    return colors.get(color, "") + char + Style.RESET_ALL
+    return colors.get(color, "") + char + Fore.RESET
