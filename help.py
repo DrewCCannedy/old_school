@@ -43,5 +43,6 @@ def get_color_str(char, color):
         "green": Fore.GREEN,
         "magenta": Fore.MAGENTA,
         "red": Fore.RED,
+        "yellow": Fore.YELLOW,
     }
     return colors.get(color, "") + char + Style.RESET_ALL

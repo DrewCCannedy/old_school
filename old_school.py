@@ -31,19 +31,13 @@ os.system(command)
 pui = ""
 wui = ""
 while playing:
-    map.update(player, object_manager.objects,
-               enemy_manager.enemies, pui, wui)
+    # updates the map with player pos, all room objects
+    # Enemy positions and the player and world UIs
+    map.update(player, object_manager.objects, enemy_manager.enemies, pui, wui)
     # enemy actions
     current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
     for enemy in enemy_manager.enemies:
-        if current_enemy == enemy:
-            wui = enemy.run(player, map.current_map.name)
-        else:
-            enemy.run(player, map.current_map.name)
-    # updates the map with player pos, all room objects
-    # Enemy positions and the player and world UIs
-    map.update(player, object_manager.objects,
-               enemy_manager.enemies, pui, wui)
+        enemy.move()
     try:
         user_input = getch()
     # catches if the user inputs an arrow key or something
@@ -88,3 +82,9 @@ while playing:
                 pui = current_enemy.take_damage(user_input)
             except AttributeError:
                 pass
+    # need to attack after player moves
+    for enemy in enemy_manager.enemies:
+        if current_enemy == enemy:
+            wui = enemy.attack_player(player, map.current_map.name)
+        enemy.move_timer += 1
+        enemy.check_dead()

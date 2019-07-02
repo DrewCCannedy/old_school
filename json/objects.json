@@ -24,7 +24,7 @@
     },
     {
         "name": "an old chalkboard",
-        "description": "It reads: \"A great foe lies ahead; press 'k' to strike him\"",
+        "description": "It reads: \"A foe lies ahead; press 'k' to ready an attack, then 'k' again to strike him\"",
         "char": "B",
         "x": 23,
         "y": 1,
@@ -42,12 +42,21 @@
     },
     {
         "name": "an old chalkboard",
-        "description": "It reads: \"A great foe lies ahead; press 'jkl' to perform a left slash\"",
+        "description": "It reads: \"A great foe lies ahead; press 'jkl' after readying an attack to perform a left slash\"",
         "char": "B",
         "x": 29,
         "y": 7,
         "room": "Tutorial 1",
         "class_name": "GameObject"
+    },{
+        "treasure": "Tissues",
+        "name": "Dusty Cabinet",
+        "description": "Long and Forgotten... many a nose has gone runny",
+        "char": "t",
+        "x": 43,
+        "y": 8,
+        "room": "Tutorial 2",
+        "class_name": "Chest"
     },
     {
         "treasure": "Janitor's Key",
