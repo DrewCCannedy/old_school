@@ -3,6 +3,7 @@
 import json
 
 from help import get_color_str
+from debug import log
 
 
 class Map:
@@ -19,7 +20,9 @@ class MapController:
 
         self.maps = []
         self.create_maps()
-        self.current_map = self.maps[2]
+        for m in self.maps:
+            if m.name == "Tutorial 2":
+                self.current_map =  m
 
     def update(self, player, objects, enemies, pui, wui):
         """Update the map with the players position."""
@@ -30,7 +33,7 @@ class MapController:
         if wui:
             self.world_input = wui
         else:
-            self.world_input = "No Enemies"
+            self.world_input = "All is well"
 
         # convert the map string to a list in order to do [] insertion
         current_map = list(self.current_map.data)

@@ -20,8 +20,8 @@ class EnemyManager:
             class_name = dict_["class_name"]
             if class_name == "Oogly":
                 o = Oogly(dict_)
-            elif class_name == "GreaterOogly":
-                o = GreaterOogly(dict_)
+            elif class_name == "BigBrudder":
+                o = BigBrudder(dict_)
             self.enemies.append(o)
 
 
@@ -87,10 +87,22 @@ class Enemy(GameObject):
             self.dead = True
 
 
-class GreaterOogly(Enemy):
+class BigBrudder(Enemy):
     """First Complex Enemy in Old SChool."""
 
     def __init__(self, dict_):
+        self.name = "Big Brudder"
+        self.description =  "A child, fat and bloated with no discernable facial features."
+        self.char = "B"
+        self.health = [
+            "k",
+            "k",
+            "jkl"
+        ]
+        self.damage = 1
+        self.dead = False
+        self.move_capable = True
+        self.move_timer = 0
         for key in dict_:
             setattr(self, key, dict_[key])
 
@@ -112,5 +124,16 @@ class Oogly(Enemy):
     """Most common enemy in Old School."""
 
     def __init__(self, dict_):
+        self.name = "Oogly"
+        self.description =  "A small misshapen child."
+        self.char = "o"
+        self.health = [
+            "k",
+            "k",
+        ]
+        self.damage = 1
+        self.dead = False
+        self.move_capable = True
+        self.move_timer = 0
         for key in dict_:
             setattr(self, key, dict_[key])

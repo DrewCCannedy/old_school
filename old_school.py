@@ -36,14 +36,14 @@ while playing:
     # Enemy positions and the player and world UIs
     map.update(player, object_manager.objects, enemy_manager.enemies, pui, wui)
     # enemy actions
-    current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
     for enemy in enemy_manager.enemies:
         enemy.move()
     try:
         user_input = getch()
     # catches if the user inputs an arrow key or something
-    except UnicodeDecodeError:
+    except UnicodeDecodeError as e:
         user_input = ""
+        log("Error occured during get_input: {}".format(e))
     # action: quit
     if user_input == 'q':
         playing = False
@@ -61,7 +61,6 @@ while playing:
             o = enemy_manager.search_enemies(player, map.current_map.name)
         try:
             if o.room == map.current_map.name:
-                log("Printing info for {}".format(o.name))
                 result = o.get_info(player)
             # if a door is opened
             if result:
@@ -85,7 +84,9 @@ while playing:
             except AttributeError:
                 pass
     # need to attack after player moves
+    enemies_present = False
     for enemy in enemy_manager.enemies:
+        current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
         if current_enemy == enemy:
             wui = enemy.attack_player(player, map.current_map.name)
         enemy.move_timer += 1

@@ -59,6 +59,12 @@ class Player:
 
     def take_damage(self, damage):
         self.health -= damage
+        if self.health <= 0:
+            self.die()
+
+    def die(self):
+        #TODO: impliment death
+        pass
 
     def add_inventory(self, item):
         self.inventory.append(item)
