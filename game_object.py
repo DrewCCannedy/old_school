@@ -1,7 +1,6 @@
 """Object for the Old_School game."""
 
-from getch import getch
-from help import center_align, clear, get_color_str
+from help import center_align, clear, get_color_str, getch
 
 
 class GameObject:

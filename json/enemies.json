@@ -49,5 +49,11 @@
         "room": "Tutorial 2",
         "class_name": "Oogly",
         "move_timer": 3
+    },
+    {
+        "x": 23,
+        "y": 2,
+        "room": "Tutorial 2",
+        "class_name": "HeartBreaker"
     }
 ]

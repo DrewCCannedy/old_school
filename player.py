@@ -1,8 +1,7 @@
 """Player for the Old_School Game."""
 from dataclasses import dataclass, field
 
-from getch import getch
-from help import clear, center_align, get_color_str
+from help import clear, center_align, get_color_str, getch
 
 
 @dataclass

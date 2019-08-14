@@ -1,8 +1,7 @@
 """Npc objects for the old school game."""
 
 from game_object import GameObject
-from getch import getch
-from help import get_color_str
+from help import get_color_str, getch
 
 
 class MrsHuff(GameObject):

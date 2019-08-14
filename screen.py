@@ -2,7 +2,7 @@
 
 import json
 
-from help import get_color_str
+from help import get_color_str, clear, center_align, getch
 from debug import log
 
 
@@ -10,6 +10,13 @@ class Map:
     def __init__(self, dict_):
         for key in dict_:
             setattr(self, key, dict_[key])
+
+    def show_info(self):
+        clear()
+        print()
+        des = center_align(self.info)
+        print(des)
+        getch()
 
 
 class MapController:

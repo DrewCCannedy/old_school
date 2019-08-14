@@ -8,8 +8,8 @@ import player
 import screen
 from object_manager import ObjectManager
 from enemy import EnemyManager
-from getch import getch
 from debug import log
+from help import getch
 
 player = player.Player(x=2, y=4, px=2, py=2, health=5, inventory=[])
 move_commands = ['d', 'a', 's', 'w']
@@ -70,6 +70,9 @@ while playing:
     # action: inspect player
     elif user_input == 'u':
         player.show_info()
+    # action: inspect room
+    elif user_input == 'r':
+        map.current_map.show_info()
     # action: attack
     elif user_input == "k":
         user_input = getch()

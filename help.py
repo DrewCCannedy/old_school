@@ -48,3 +48,15 @@ def get_color_str(char, color):
         "yellow": Fore.YELLOW,
     }
     return colors.get(color, "") + char + Fore.RESET
+
+def getch():
+    """
+    Interrupting program until pressed any key
+    """
+    try:
+        import msvcrt
+        x = bytes.decode(msvcrt.getch())
+        return x
+
+    except ImportError:
+        print("This program must be run on Windows")

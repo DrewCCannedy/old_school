@@ -5,7 +5,8 @@
         "left": "Janitor's Cave",
         "right": "Tutorial 2",
         "up": null,
-        "down": null
+        "down": null,
+        "info": "You see a long winding path. The air is heavy. The walls are no longer the walls of your school but something much older. A feeling of dread washes over you."
     },
     {
         "name": "Tutorial 2",
@@ -13,7 +14,8 @@
         "left": "Tutorial 1",
         "right": null,
         "up": null,
-        "down": null
+        "down": null,
+        "info": "You have continued down this winding path. You can almost feel the walls just by looking at them. They are cold and glaring. You desperately long for escape from this dark place."
     },
     {
         "name": "School Hall",
@@ -21,7 +23,8 @@
         "left": null,
         "right": null,
         "up": "Huff Class",
-        "down": "Janitor's Cave"
+        "down": "Janitor's Cave",
+        "info": "You see a bustling school hall filled with students of all ages. You get the feeling you are being watched, but it is unclear who is watching you."
     },
     {
         "name": "Janitor's Cave",
@@ -29,7 +32,8 @@
         "left": null,
         "right": "Tutorial 1",
         "up": "School Hall",
-        "down": null
+        "down": null,
+        "info": ""
     },
     {
         "name": "Huff Class",
@@ -37,6 +41,7 @@
         "left": null,
         "right": null,
         "up": null,
-        "down": "School Hall"
+        "down": "School Hall",
+        "info": ""
     }
 ]
