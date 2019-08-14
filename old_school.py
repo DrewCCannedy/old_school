@@ -8,8 +8,7 @@ import player
 import screen
 from object_manager import ObjectManager
 from enemy import EnemyManager
-from debug import log
-from help import getch
+from help import getch, log
 
 player = player.Player(x=2, y=4, px=2, py=2, health=5, inventory=[])
 move_commands = ['d', 'a', 's', 'w']

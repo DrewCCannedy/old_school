@@ -1,8 +1,19 @@
-from os import system, name
+from os import system, name, path
 import string
 
 from colorama import Fore
 
+
+def log(output):
+    my_path = "debug.txt"
+    if path.exists(my_path):
+        append_write = 'a'
+    else:
+        append_write = 'w'
+
+    f = open(my_path, append_write)
+    f.write(output + "\n")
+    f.close()
 
 def chunks(s, n):
     lines = []

@@ -3,7 +3,6 @@
 import json
 
 from help import get_color_str, clear, center_align, getch
-from debug import log
 
 
 class Map:
