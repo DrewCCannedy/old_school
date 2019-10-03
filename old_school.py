@@ -34,6 +34,8 @@ while playing:
     # updates the map with player pos, all room objects
     # Enemy positions and the player and world UIs
     map.update(player, object_manager.objects, enemy_manager.enemies, pui, wui)
+    pui = 0
+    wui = 0
     # enemy actions
     for enemy in enemy_manager.enemies:
         enemy.move()
@@ -86,9 +88,8 @@ while playing:
             except AttributeError:
                 pass
     # need to attack after player moves
-    enemies_present = False
+    current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
     for enemy in enemy_manager.enemies:
-        current_enemy = enemy_manager.search_enemies(player, map.current_map.name)
         if current_enemy == enemy:
             wui = enemy.attack_player(player, map.current_map.name)
         enemy.move_timer += 1

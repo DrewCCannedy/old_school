@@ -3,6 +3,7 @@
 import json
 
 from game_object import GameObject
+from help import log
 
 
 class EnemyManager:
@@ -30,9 +31,8 @@ class EnemyManager:
     def search_enemies(self, player, room):
         for o in self.enemies:
             if o.room == room:
-                if o.y == player.y:
-                    if o.x == player.x - 1 or o.x == player.x + 1:
-                        return o
+                if o.in_range(player):
+                    return o
 
     # just in case we want to update the enemies.json
     def write_enemies(self):
@@ -54,23 +54,19 @@ class Enemy(GameObject):
         self.move_capable = True
         self.move_timer = True
         self.x_attack_range = 1
+        self.y_attack_range = 0
 
     def attack_player(self, player, room):
         if not self.dead:
             if self.move_timer % 2 == 0 or not self.move_capable:
-                if self.room == room:
-                    if self.in_range(player):
-                        return self.attack(player)
+                return self.attack(player)
 
     def in_range(self, player):
-        if self.x == player.x:
-            for cord in range(1, 1):
-                if self.y == player.y - cord or self.y == player.y + cord:
-                    return True
-        elif self.y == player.y:
-            for cord in range(1, self.x_attack_range+1):
-                if self.x == player.x - cord or self.x == player.x + cord:
-                    return True
+        for cord in range(0, self.y_attack_range + 1):
+            if self.y == player.y + cord or self.y == player.y - cord:
+                for cord in range(1, self.x_attack_range * 2):
+                    if self.x == player.x - cord or self.x == player.x + cord:
+                        return True
         return False
 
     def attack(self, player):
@@ -158,7 +154,8 @@ class HeartBreaker(Enemy):
         self.name = "Heart Breaker"
         self.description = "A popular kid in a previous life, now a hollow shell of skin and bones."
         self.char = "H"
-        self.x_attack_range = 3
+        self.x_attack_range = 2
+        self.y_attack_range = 1
         self.health = [
             "jkl",
             "lkj",
